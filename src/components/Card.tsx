@@ -1,19 +1,36 @@
-import React from "react";
-import styled from "styled-components";
+import { useContext } from "react";
+import styled, { keyframes } from "styled-components";
+import { CardsContext } from "../context/CardsContext";
 
 interface CardProps {
   question: string;
+  onClick: () => void;
 }
 
-const Card = ({ question }: CardProps) => {
+const Card = ({ question, onClick }: CardProps) => {
+  const { state } = useContext(CardsContext);
   return (
-    <SCardContainer>
-      <SQuestion>{question}</SQuestion>
+    <SCardContainer onClick={onClick}>
+      <SQuestion>{!state.noMore ? question : "Nima kart"}</SQuestion>
     </SCardContainer>
   );
 };
 
 export default Card;
+
+const animateRainbow = keyframes`
+  0%{
+    filter: brightness(100%);
+  }
+
+  50% {
+    filter: brightness(80%);
+  }
+  
+  100%{
+    filter: brightness(100%);
+  }
+`;
 
 const SCardContainer = styled.div`
   width: 35rem;
@@ -29,8 +46,20 @@ const SCardContainer = styled.div`
   border: 1px solid black;
   box-shadow: 0.5rem 0.5rem 1rem rgba(0, 0, 0, 0.25);
   padding: 3rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  background-size: 1800%;
+  overflowY: auto:
+  word-break: break-all;
+  word-wrap: break-word;
 
-  @media only screen and (max-width: );
+  &:hover {
+    animation: ${animateRainbow} 0.75s ease-in infinite;
+  }
+
+  &:active {
+    transform: translateY(5px);
+  }
 `;
 
 const SQuestion = styled.span`

@@ -1,20 +1,20 @@
 import styled from "styled-components";
 import Button from "../components/Button";
 import Card from "../components/Card";
-import { db } from "../firebase";
-import { collection, doc, setDoc } from "firebase/firestore";
+import { useContext } from "react";
+import { CardsContext } from "../context/CardsContext";
+import { useNavigate } from "react-router-dom";
 
 const Game = () => {
-  const handleAddQuestion = async () => {
-    const questionRef = doc(collection(db, "questions"));
-    try {
-      await setDoc(questionRef, {
-        id: questionRef.id,
-        question: "last test",
-      });
-    } catch (err) {
-      console.log(err);
-    }
+  const { state, dispatch } = useContext(CardsContext);
+  const navigate = useNavigate();
+
+  const handleDrawCards = () => {
+    !state.noMore && dispatch({ type: "DRAW_CARDS" });
+  };
+
+  const handleGoToAddQuestion = () => {
+    navigate("/new-question");
   };
 
   return (
@@ -29,17 +29,34 @@ const Game = () => {
         </SDescription>
       </STitleContainer>
       <SCardsContainer>
-        <Card question="Nigdy więcej nie zobaczyć słońca" />
+        <Card
+          question={
+            !!state.currentQuestions ? state.currentQuestions[0].question : ""
+          }
+          onClick={handleDrawCards}
+        />
         <SOr>lub</SOr>
-        <Card question="żyć bez jakiejkolwiek muzyki do końca życia" />
+        <Card
+          question={
+            !!state.currentQuestions ? state.currentQuestions[1].question : ""
+          }
+          onClick={handleDrawCards}
+        />
       </SCardsContainer>
-      <Button text="Wylosuj nowe karty" place="left" smallFont={true} />
-      <Button
-        text="Dodaj swoją kartę"
-        place="right"
-        smallFont={true}
-        onClick={handleAddQuestion}
-      />
+      <SButtonsContainer>
+        <Button
+          text="Wylosuj nowe karty"
+          place="left"
+          smallFont={true}
+          onClick={handleDrawCards}
+        />
+        <Button
+          text="Dodaj swoją kartę"
+          place="right"
+          smallFont={true}
+          onClick={handleGoToAddQuestion}
+        />
+      </SButtonsContainer>
     </SGameContainer>
   );
 };
@@ -52,12 +69,8 @@ const SGameContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 4rem;
+  gap: 6rem;
   flex-direction: column;
-
-  @media only screen and (max-width: 540px) {
-    gap: 6rem;
-  }
 `;
 
 const STitleContainer = styled.div`
@@ -67,11 +80,7 @@ const STitleContainer = styled.div`
   justify-content: center;
   gap: 5rem;
 
-  @media only screen and (max-width: 1000px) {
-    margin-top: 15rem;
-  }
-
-  @media only screen and (max-width: 540px) {
+  @media only screen and (max-width: 576px) {
     margin-top: 5rem;
   }
 `;
@@ -80,6 +89,7 @@ const SDescription = styled.span`
   color: white;
   font-size: 2.4rem;
   text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+  text-align: center;
 `;
 
 const STitle = styled.div`
@@ -111,7 +121,7 @@ const SCardsContainer = styled.div`
   @media only screen and (max-width: 1400px) {
     gap: 5rem;
   }
-  @media only screen and (max-width: 540px) {
+  @media only screen and (max-width: 576px ) {
     flex-direction: column;
     gap 3rem;
   }
@@ -123,4 +133,11 @@ const SOr = styled.span`
   text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
   transform: rotate(-5deg);
   align-self: center;
+`;
+
+export const SButtonsContainer = styled.div`
+  @media only screen and (max-width: 576px) {
+    display: flex;
+    gap: 4rem;
+  }
 `;

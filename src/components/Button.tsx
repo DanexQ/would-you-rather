@@ -5,11 +5,17 @@ interface ButtonProps {
   place: "mid" | "right" | "left";
   smallFont: boolean;
   onClick?: () => void;
+  type?: "submit";
 }
 
-const Button = ({ text, place, smallFont, onClick }: ButtonProps) => {
+const Button = ({ text, place, smallFont, onClick, type }: ButtonProps) => {
   return (
-    <SButton place={place} smallFont={smallFont} onClick={onClick}>
+    <SButton
+      type={!!type ? type : "button"}
+      place={place}
+      smallFont={smallFont}
+      onClick={onClick}
+    >
       {text}
     </SButton>
   );
@@ -37,10 +43,19 @@ const SButton = styled.button<{ place: string; smallFont: boolean }>`
     top: 4rem; 
     ${place}:4rem;
 
-    @media only screen and (max-width: 540px) {
-        display: none;
-    }
+    
     `}
+
+  @media only screen and (max-width: 576px) {
+    width: 21rem;
+    height: 15rem;
+    font-size: 2.5rem;
+    display: inline-block;
+    top: 0rem;
+    right: 0rem;
+    left: 0rem;
+    position: relative;
+  }
 
   &:hover {
     filter: brightness(0.9);

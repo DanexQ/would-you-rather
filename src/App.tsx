@@ -22,5 +22,9 @@ const SAppContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #3c4048;
+
+  @media only screen and (max-width: 576px) {
+    height: 100%;
+    padding: 3rem 0;
+  }
 `;
