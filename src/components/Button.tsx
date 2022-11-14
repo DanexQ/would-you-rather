@@ -46,8 +46,14 @@ const SButton = styled.button<{ place: string; smallFont: boolean }>`
     
     `}
 
+  @media only screen and (max-width: 1440px) {
+    width: 30rem;
+    height: 15rem;
+    font-size: 3rem;
+  }
+
   @media only screen and (max-width: 576px) {
-    width: 21rem;
+    min-width: 40%;
     height: 15rem;
     font-size: 2.5rem;
     display: inline-block;

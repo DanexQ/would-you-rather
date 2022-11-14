@@ -137,7 +137,8 @@ const SOr = styled.span`
 
 export const SButtonsContainer = styled.div`
   @media only screen and (max-width: 576px) {
+    width: 100%;
     display: flex;
-    gap: 4rem;
+    justify-content: space-around;
   }
 `;
