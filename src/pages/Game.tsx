@@ -21,11 +21,11 @@ const Game = () => {
     <SGameContainer>
       <STitleContainer>
         <STitle>
-          <STitleWord>Czy </STitleWord>
-          <STitleWord>wolałbyś?</STitleWord>
+          <STitleWord>Would you </STitleWord>
+          <STitleWord>rather?</STitleWord>
         </STitle>
         <SDescription>
-          (Wybierz kartę z rzeczą, którą wolałbyś zrobić){" "}
+          (Pick a card with a thing you would rather do!){" "}
         </SDescription>
       </STitleContainer>
       <SCardsContainer>
@@ -45,13 +45,13 @@ const Game = () => {
       </SCardsContainer>
       <SButtonsContainer>
         <Button
-          text="Wylosuj nowe karty"
+          text="Get more cards"
           place="left"
           smallFont={true}
           onClick={handleDrawCards}
         />
         <Button
-          text="Dodaj swoją kartę"
+          text="Add new card"
           place="right"
           smallFont={true}
           onClick={handleGoToAddQuestion}

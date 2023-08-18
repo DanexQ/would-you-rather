@@ -38,8 +38,7 @@ const NewQuestion = () => {
 
   return (
     <SForm onSubmit={handleSubmit}>
-      <label htmlFor="question">Wpisz pytanie poniżej</label>
-      <SSpan>pamiętaj o odpowiedniej odmianie czasowników</SSpan>
+      <label htmlFor="question">Question of the new card</label>
       <SInput
         id="question"
         cols={20}
