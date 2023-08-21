@@ -35,7 +35,7 @@ const Game = () => {
           }
           onClick={handleDrawCards}
         />
-        <SOr>lub</SOr>
+        <SOr>Or</SOr>
         <Card
           question={
             !!state.currentQuestions ? state.currentQuestions[1].question : ""

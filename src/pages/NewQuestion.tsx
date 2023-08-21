@@ -47,9 +47,9 @@ const NewQuestion = () => {
         value={question}
       />
       <SButtonsContainer>
-        <Button type="submit" text="Zatwierdź" place="mid" smallFont={true} />
+        <Button type="submit" text="Submit" place="mid" smallFont={true} />
         <Button
-          text="Wróć"
+          text="Back"
           place="right"
           smallFont={false}
           onClick={handleGoBack}
