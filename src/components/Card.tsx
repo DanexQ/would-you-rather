@@ -11,7 +11,7 @@ const Card = ({ question, onClick }: CardProps) => {
   const { state } = useContext(CardsContext);
   return (
     <SCardContainer onClick={onClick}>
-      <SQuestion>{!state.noMore ? question : "Nima kart"}</SQuestion>
+      <SQuestion>{!state.noMore ? question : "No more cards"}</SQuestion>
     </SCardContainer>
   );
 };
